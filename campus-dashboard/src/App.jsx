@@ -2,8 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 
 // ---------------------------------------------------------------------------
 // 1. UTILS & HOOKS
-// ---------------------------------------------------------------------------
-const API_BASE = 'http://localhost:3000'
+const API_BASE = 'https://campusnews.onrender.com'
 
 function formatFullDate(dateStr) {
   if (!dateStr) return ''
