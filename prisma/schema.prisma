@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  role       String   @default("organizer")
+  isApproved Boolean  @default(false)
+}
+
+model Notice {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  category  String
+  postedBy  String
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  venue       String
+  startTime   DateTime
+  endTime     DateTime
+  organizer   String
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+}
+
+model Admin {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  password   String
+  role       String   @default("admin")
+  isApproved Boolean  @default(true) // Admins are approved by default
+}
